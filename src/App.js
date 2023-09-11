@@ -18,11 +18,35 @@ const faqs = [
 export default function App() {
   return (
     <div className="App">
-      <Accordion />
+      <Accordion data={faqs} />
     </div>
   );
 }
 
-function Accordion() {
-  return <p>TODO</p>;
+function Accordion({ data }) {
+  return (
+    <div className="accordion">
+      {data.map((item, i) => (
+        <AccordionItem
+          key={item.num}
+          num={i + 1}
+          title={item.title}
+          text={item.text}
+        />
+      ))}
+    </div>
+  );
+}
+
+function AccordionItem({ num, title, text }) {
+  return (
+    <div className="item">
+      <p className="number">{num}</p>
+      <p className="text">{title}</p>
+      <p className="icon">-</p>
+      <div className="content-box">
+        <p>{text}</p>
+      </div>
+    </div>
+  );
 }
